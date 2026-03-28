@@ -1,7 +1,22 @@
 # 更新日志
 
-## 下个版本
+## V 2.2.2
+>！！！v2将不再维护，请升级至[v3](https://pub.dev/packages/easy_refresh)  
+>添加: flutter3 支持
+
+## V 2.2.1
+>修复：firstRefresh为true时，不设置firstRefreshWidget报错[issues#457](https://github.com/xuelongqy/flutter_easyrefresh/issues/457)  
+
+## V 2.2.0
+>兼容：example示例ios中文支持  
+>添加：空安全(null safety)支持，不需要请使用2.1.8版本  
+
+## V 2.1.8
+>修复：上拉加载不消失 [issues#392](https://github.com/xuelongqy/flutter_easyrefresh/issues/392)  
+
+## V 2.1.7
 >修复：销毁时任务监听器报错 [issues#382](https://github.com/xuelongqy/flutter_easyrefresh/issues/382)  
+>修复：NestedScrollViewPage，TabBar列表上划影响其他列表 [pull#357](https://github.com/xuelongqy/flutter_easyrefresh/pull/357)  
 
 ## V 2.1.6
 >修复：下拉刷新不会结束 [issues#355](https://github.com/xuelongqy/flutter_easyrefresh/issues/355)  

@@ -1,7 +1,22 @@
 # Change log
 
-## Next
+## V 2.2.2
+>！！！v2 will no longer be maintained, please upgrade to [v3](https://pub.dev/packages/easy_refresh)  
+>Add: flutter3 supports  
+
+## V 2.2.1
+>Fix: firstRefresh is true, and firstRefreshWidget is null to report an error [issues#457](https://github.com/xuelongqy/flutter_easyrefresh/issues/457)  
+
+## V 2.2.0
+>Add：iOS example supports Chinese  
+>Add：null safety. If you don't need, please use a version 2.1.8 version  
+
+## V 2.1.8
+>Fix: loading does not disappear [issues#392](https://github.com/xuelongqy/flutter_easyrefresh/issues/392)  
+
+## V 2.1.7
 >Fix: taskNotifier reported an error when disposed [issues#382](https://github.com/xuelongqy/flutter_easyrefresh/issues/382)  
+>Fix: NestedScrollViewPage, TabBar list scrolling affects other lists [pull#357](https://github.com/xuelongqy/flutter_easyrefresh/pull/357)  
 
 ## V 2.1.6
 >Fix: refresh will not end [issues#355](https://github.com/xuelongqy/flutter_easyrefresh/issues/355)  

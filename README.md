@@ -2,7 +2,9 @@
 
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](/LICENSE)
 [![Awesome Flutter](https://img.shields.io/badge/Awesome-Flutter-blue.svg?longCache=true&style=flat-square)](https://stackoverflow.com/questions/tagged/flutter?sort=votes)
-[![Pub](https://img.shields.io/badge/pub-v2.1.6-orange.svg)](https://pub.dartlang.org/packages/flutter_easyrefresh)
+[![Pub](https://img.shields.io/pub/v/flutter_easyrefresh)](https://pub.flutter-io.cn/packages/flutter_easyrefresh)
+
+# ！！！v2将不再维护，请升级至[v3](https://pub.dev/packages/easy_refresh)
 
 ## [English](https://github.com/xuelongqy/flutter_easyrefresh/blob/v2/README_EN.md) | 中文
 
@@ -79,7 +81,7 @@ Demo：[下载 apk](https://github.com/xuelongqy/flutter_easyrefresh/raw/master/
 ```
 //pub方式
 dependencies:
-  flutter_easyrefresh: ^2.1.6
+  flutter_easyrefresh: version
 
 //导入方式
 dependencies:
@@ -182,7 +184,7 @@ import 'package:flutter_easyrefresh/material_footer.dart';
 
 # 捐赠
 如果你喜欢我的项目，请在项目右上角 "Star" 一下。你的支持是我最大的鼓励！ ^_^
-你也还可以扫描下面的二维码，或者通过[![Donate to this project using Paypal](https://img.shields.io/badge/paypal-donate-yellow.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=334PPRBZTY3J8&source=url)，对作者进行打赏。  
+你也还可以扫描下面的二维码，或者通过[![Donate to this project using Paypal](https://img.shields.io/badge/paypal-donate-yellow.svg)](https://www.paypal.com/paypalme/xuelongqy)，对作者进行打赏。  
 
 ![](https://raw.githubusercontent.com/xuelongqy/donation/master/pay_alipay.jpg?raw=true) ![](https://raw.githubusercontent.com/xuelongqy/donation/master/pay_wxpay.jpg?raw=true) ![](https://raw.githubusercontent.com/xuelongqy/donation/master/pay_tencent.jpg?raw=true)
 

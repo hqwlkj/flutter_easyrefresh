@@ -2,7 +2,9 @@
 
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](/LICENSE)
 [![Awesome Flutter](https://img.shields.io/badge/Awesome-Flutter-blue.svg?longCache=true&style=flat-square)](https://stackoverflow.com/questions/tagged/flutter?sort=votes)
-[![Pub](https://img.shields.io/badge/pub-v2.1.6-orange.svg)](https://pub.dartlang.org/packages/flutter_easyrefresh)
+[![Pub](https://img.shields.io/pub/v/flutter_easyrefresh)](https://pub.dev/packages/flutter_easyrefresh)
+
+# ！！！v2 will no longer be maintained, please upgrade to [v3](https://pub.dev/packages/easy_refresh)
 
 ## English | [中文](https://github.com/xuelongqy/flutter_easyrefresh/blob/v2/README.md)
 
@@ -79,7 +81,7 @@ Demo：[Download apk](https://github.com/xuelongqy/flutter_easyrefresh/raw/maste
 ```
 //pub
 dependencies:
-  flutter_easyrefresh: ^2.1.6
+  flutter_easyrefresh: version
 
 //import
 dependencies:
@@ -182,7 +184,7 @@ No built-in internationalization support is provided. Please set the text that n
 
 # Donation
 If you like my project, please in the upper right corner of the project "Star". Your support is my biggest encouragement! ^_^
-You can also scan the qr code below or [![Donate to this project using Paypal](https://img.shields.io/badge/paypal-donate-yellow.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=334PPRBZTY3J8&source=url), donation to Author.
+You can also scan the qr code below or [![Donate to this project using Paypal](https://img.shields.io/badge/paypal-donate-yellow.svg)](https://www.paypal.com/paypalme/xuelongqy), donation to Author.
 
 ![](https://raw.githubusercontent.com/xuelongqy/donation/master/pay_alipay.jpg?raw=true) ![](https://raw.githubusercontent.com/xuelongqy/donation/master/pay_wxpay.jpg?raw=true) ![](https://raw.githubusercontent.com/xuelongqy/donation/master/pay_tencent.jpg?raw=true)
 

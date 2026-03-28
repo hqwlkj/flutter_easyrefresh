@@ -5,6 +5,14 @@ import 'package:flutter/scheduler.dart';
 
 import '../../easy_refresh.dart';
 
+/// This allows a value of type T or T?
+/// to be treated as a value of type T?.
+///
+/// We use this so that APIs that have become
+/// non-nullable can still be used with `!` and `?`
+/// to support older versions of the API as well.
+T? _ambiguate<T>(T? value) => value;
+
 /// Header
 abstract class Footer {
   /// Footer容器高度
@@ -16,7 +24,7 @@ abstract class Footer {
   final bool float;
 
   // 完成延时
-  final Duration completeDuration;
+  final Duration? completeDuration;
 
   /// 是否开启无限加载
   final bool enableInfiniteLoad;
@@ -31,7 +39,7 @@ abstract class Footer {
   final bool safeArea;
 
   /// 内边距(根据布局合理使用，设置后safeArea无效)
-  final EdgeInsets padding;
+  final EdgeInsets? padding;
 
   Footer({
     this.extent = 60.0,
@@ -73,8 +81,8 @@ abstract class Footer {
       padding: padding,
       bindLoadIndicator: (finishLoad, resetLoadState) {
         if (easyRefresh.controller != null) {
-          easyRefresh.controller.finishLoadCallBack = finishLoad;
-          easyRefresh.controller.resetLoadStateCallBack = resetLoadState;
+          easyRefresh.controller!.finishLoadCallBack = finishLoad;
+          easyRefresh.controller!.resetLoadStateCallBack = resetLoadState;
         }
       },
     );
@@ -89,7 +97,7 @@ abstract class Footer {
       double loadIndicatorExtent,
       AxisDirection axisDirection,
       bool float,
-      Duration completeDuration,
+      Duration? completeDuration,
       bool enableInfiniteLoad,
       bool success,
       bool noMore);
@@ -104,13 +112,9 @@ class NotificationFooter extends Footer {
   final LinkFooterNotifier notifier;
 
   NotificationFooter({
-    @required this.footer,
-    this.notifier,
-  })  : assert(
-          footer != null,
-          'A non-null Footer must be provided to a NotifierFooter.',
-        ),
-        super(
+    required this.footer,
+    required this.notifier,
+  }) : super(
           extent: footer.extent,
           triggerDistance: footer.triggerDistance,
           completeDuration: footer.completeDuration,
@@ -127,12 +131,12 @@ class NotificationFooter extends Footer {
       double loadIndicatorExtent,
       AxisDirection axisDirection,
       bool float,
-      Duration completeDuration,
+      Duration? completeDuration,
       bool enableInfiniteLoad,
       bool success,
       bool noMore) {
     // 发起通知
-    this.notifier?.contentBuilder(
+    this.notifier.contentBuilder(
         context,
         loadState,
         pulledExtent,
@@ -171,7 +175,7 @@ class CustomFooter extends Footer {
     completeDuration,
     enableInfiniteLoad = false,
     enableHapticFeedback = false,
-    @required this.footerBuilder,
+    required this.footerBuilder,
   }) : super(
           extent: extent,
           triggerDistance: triggerDistance,
@@ -189,7 +193,7 @@ class CustomFooter extends Footer {
       double loadIndicatorExtent,
       AxisDirection axisDirection,
       bool float,
-      Duration completeDuration,
+      Duration? completeDuration,
       bool enableInfiniteLoad,
       bool success,
       bool noMore) {
@@ -210,15 +214,15 @@ class CustomFooter extends Footer {
 
 /// 链接通知器
 class LinkFooterNotifier extends ChangeNotifier {
-  BuildContext context;
+  late BuildContext context;
   LoadMode loadState = LoadMode.inactive;
   double pulledExtent = 0.0;
-  double loadTriggerPullDistance;
-  double loadIndicatorExtent;
-  AxisDirection axisDirection;
-  bool float;
-  Duration completeDuration;
-  bool enableInfiniteLoad;
+  late double loadTriggerPullDistance;
+  late double loadIndicatorExtent;
+  late AxisDirection axisDirection;
+  late bool float;
+  Duration? completeDuration;
+  late bool enableInfiniteLoad;
   bool success = true;
   bool noMore = false;
 
@@ -230,7 +234,7 @@ class LinkFooterNotifier extends ChangeNotifier {
       double loadIndicatorExtent,
       AxisDirection axisDirection,
       bool float,
-      Duration completeDuration,
+      Duration? completeDuration,
       bool enableInfiniteLoad,
       bool success,
       bool noMore) {
@@ -245,7 +249,8 @@ class LinkFooterNotifier extends ChangeNotifier {
     this.enableInfiniteLoad = enableInfiniteLoad;
     this.success = success;
     this.noMore = noMore;
-    SchedulerBinding.instance.addPostFrameCallback((Duration timestamp) {
+    _ambiguate(SchedulerBinding.instance)!
+        .addPostFrameCallback((Duration timestamp) {
       notifyListeners();
     });
   }
@@ -254,28 +259,28 @@ class LinkFooterNotifier extends ChangeNotifier {
 /// 经典Footer
 class ClassicalFooter extends Footer {
   /// Key
-  final Key key;
+  final Key? key;
 
   /// 方位
-  final AlignmentGeometry alignment;
+  final AlignmentGeometry? alignment;
 
   /// 提示加载文字
-  final String loadText;
+  final String? loadText;
 
   /// 准备加载文字
-  final String loadReadyText;
+  final String? loadReadyText;
 
   /// 正在加载文字
-  final String loadingText;
+  final String? loadingText;
 
   /// 加载完成文字
-  final String loadedText;
+  final String? loadedText;
 
   /// 加载失败文字
-  final String loadFailedText;
+  final String? loadFailedText;
 
   /// 没有更多文字
-  final String noMoreText;
+  final String? noMoreText;
 
   /// 没有更多图标
   final IconData noMoreIcon;
@@ -284,7 +289,7 @@ class ClassicalFooter extends Footer {
   final bool showInfo;
 
   /// 更多信息
-  final String infoText;
+  final String? infoText;
 
   /// 背景颜色
   final Color bgColor;
@@ -299,12 +304,12 @@ class ClassicalFooter extends Footer {
     double extent = 60.0,
     double triggerDistance = 70.0,
     bool float = false,
-    Duration completeDuration = const Duration(seconds: 1),
+    Duration? completeDuration = const Duration(seconds: 1),
     bool enableInfiniteLoad = true,
     bool enableHapticFeedback = true,
     bool overScroll = false,
     bool safeArea = true,
-    EdgeInsets padding,
+    EdgeInsets? padding,
     this.key,
     this.alignment,
     this.loadText,
@@ -340,7 +345,7 @@ class ClassicalFooter extends Footer {
       double loadIndicatorExtent,
       AxisDirection axisDirection,
       bool float,
-      Duration completeDuration,
+      Duration? completeDuration,
       bool enableInfiniteLoad,
       bool success,
       bool noMore) {
@@ -370,24 +375,24 @@ class ClassicalFooterWidget extends StatefulWidget {
   final double loadIndicatorExtent;
   final AxisDirection axisDirection;
   final bool float;
-  final Duration completeDuration;
+  final Duration? completeDuration;
   final bool enableInfiniteLoad;
   final bool success;
   final bool noMore;
 
   ClassicalFooterWidget(
-      {Key key,
-      this.loadState,
-      this.classicalFooter,
-      this.pulledExtent,
-      this.loadTriggerPullDistance,
-      this.loadIndicatorExtent,
-      this.axisDirection,
-      this.float,
+      {Key? key,
+      required this.loadState,
+      required this.classicalFooter,
+      required this.pulledExtent,
+      required this.loadTriggerPullDistance,
+      required this.loadIndicatorExtent,
+      required this.axisDirection,
+      required this.float,
       this.completeDuration,
-      this.enableInfiniteLoad,
-      this.success,
-      this.noMore})
+      required this.enableInfiniteLoad,
+      required this.success,
+      required this.noMore})
       : super(key: key);
 
   @override
@@ -441,10 +446,10 @@ class ClassicalFooterWidgetState extends State<ClassicalFooterWidget>
   }
 
   // 动画
-  AnimationController _readyController;
-  Animation<double> _readyAnimation;
-  AnimationController _restoreController;
-  Animation<double> _restoreAnimation;
+  late AnimationController _readyController;
+  late Animation<double> _readyAnimation;
+  late AnimationController _restoreController;
+  late Animation<double> _restoreAnimation;
 
   // Icon旋转度
   double _iconRotationValue = 1.0;
@@ -494,7 +499,7 @@ class ClassicalFooterWidgetState extends State<ClassicalFooterWidget>
   }
 
   // 更新时间
-  DateTime _dateTime;
+  late DateTime _dateTime;
 
   // 获取更多信息
   String get _infoTextStr {
@@ -587,13 +592,14 @@ class ClassicalFooterWidgetState extends State<ClassicalFooterWidget>
                   ? 0.0
                   : null,
           child: Container(
-            alignment: widget.classicalFooter.alignment ?? isVertical
-                ? !isReverse
-                    ? Alignment.topCenter
-                    : Alignment.bottomCenter
-                : isReverse
-                    ? Alignment.centerRight
-                    : Alignment.centerLeft,
+            alignment: widget.classicalFooter.alignment ??
+                (isVertical
+                    ? !isReverse
+                        ? Alignment.topCenter
+                        : Alignment.bottomCenter
+                    : isReverse
+                        ? Alignment.centerRight
+                        : Alignment.centerLeft),
             width: !isVertical
                 ? widget.loadIndicatorExtent > widget.pulledExtent
                     ? widget.loadIndicatorExtent
